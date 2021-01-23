@@ -1,0 +1,1 @@
+### Point of this repo to learn the basics of elixir
