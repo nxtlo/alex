@@ -1,4 +1,4 @@
-### Point of this repo to learn the basics of elixir
+### Building random stuff with elixir
 
 
 ### Running
