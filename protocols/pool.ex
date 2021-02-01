@@ -45,15 +45,35 @@ end
 
 
 defmodule NameErr do
+  @moduledoc """
+  raised when the database name or user is not a string
+  """
   defexception message: "Pool name can not be empty."
 end
 
 defmodule CxnErr do
+  @moduledoc """
+  raised on connections error
+  """
   defexception message: "Connection Error."
 end
 
 defmodule Pool do
+  @moduledoc """
+  ## Pool connection.
+
   
+  ### Params:
+    Default Optional: localhost -> host
+    Default Optional: port -> 5432
+    Default Optional: user -> "postgres"
+    Important: name -> ""
+    Important: password -> ""
+
+  ### Usage:
+    pool = Pool.new("dbname", 12345)
+
+  """
   @enforce_keys [:user, :password]
   alias __MODULE__
 
@@ -61,7 +81,14 @@ defmodule Pool do
 
   @impl true
   def init(host \\ "localhost", port \\ 5432, user, password, name \\ "postgres") do
-    initdb = %Pool{host: host, port: port, user: user, password: password, name: name}
+    initdb = %Pool
+                {
+                  host: host, 
+                  port: port, 
+                  user: user, 
+                  password: password, 
+                  name: name
+                }
     
     try do
       Process.sleep(5)
@@ -86,6 +113,9 @@ defmodule Pool do
 end
 
 defmodule Connect do
+  @moduledoc """
+  Normal Connection - Still Unfinished.
+  """
   @enforce_keys [:host, :user, :password]
   alias __MODULE__
 
